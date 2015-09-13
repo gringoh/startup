@@ -1,1 +1,5 @@
+html {
+	font-family: Arial;
+	font-size: 14px;
+}
 header, footer, aside, nav {     background-color: #FF0; }
