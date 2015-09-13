@@ -27,3 +27,7 @@ header, footer { text-align: center; }
 	font-size: 10px;
 	background-color: magenta;
 }
+
+.oh-no-inline-styles {
+	background-color: green!important;
+}
