@@ -14,8 +14,14 @@ header, footer { text-align: center; }
 	font-size: 10px;
 	background-color: magenta;
 }
+
 .content { font-size: 14px; }
-.navigation { font-size: 12px; }
+
+.navigation {
+	font-size: 12px;
+	background-color: blue;
+}
+
 .sidebar {
 	font-size: 10px;
 	background-color: magenta;
