@@ -36,11 +36,15 @@
 
 		<button type="button">Click Me!</button>
 
+		<input class="alias" type="text" />
+
 		<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
 
 		<script>
 			$(document).ready(function() {
-				$("#hidden").fadeIn("slow");
+				$("#hidden").fadeIn("slow", function() {
+					$(".alias").focus();
+				});
 			});
 		</script>
 	</body>
