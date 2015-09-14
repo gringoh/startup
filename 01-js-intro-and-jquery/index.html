@@ -48,10 +48,16 @@
 			});
 
 			$("#button").click(function() {
-				$.get("http://bootcamp.aws.af.cm/welcome/Emanuel")
+				$.get("http://invalidurl/welcome/Emanuel")
+
 					.done(function(data) {
 						$("#hidden").text(data.response);
 					})
+
+					.fail(function(error) {
+						$("#hidden").text("an error has occurred");
+						$("#hidden").css('color', 'red');
+					});
 			})
 		</script>
 	</body>
