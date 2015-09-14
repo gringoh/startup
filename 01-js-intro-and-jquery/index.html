@@ -48,17 +48,25 @@
 			});
 
 			$("#button").click(function() {
-				$.get("http://invalidurl/welcome/Emanuel")
+				$.get("http://bootcamp.aws.af.cm/welcome/Emanuel")
 
 					.done(function(data) {
 						$("#hidden").text(data.response);
+						highlight("Emanuel");
 					})
 
 					.fail(function(error) {
 						$("#hidden").text("an error has occurred");
 						$("#hidden").css('color', 'red');
 					});
-			})
+			});
+
+			function highlight(searchTerm) {
+				var rgxp = new RegExp(searchTerm, 'g');
+				var repl = '<span class="highlight">' + searchTerm + '</span>';
+				var html = $("#hidden").html();
+				$("#hidden").html(html.replace(rgxp, repl));
+			}
 		</script>
 	</body>
 </html>
