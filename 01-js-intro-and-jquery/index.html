@@ -48,7 +48,10 @@
 			});
 
 			$("#button").click(function() {
-				$.get("http://bootcamp.aws.af.cm/welcome/Emanuel");
+				$.get("http://bootcamp.aws.af.cm/welcome/Emanuel")
+					.done(function(data) {
+						$("#hidden").text(data.response);
+					})
 			})
 		</script>
 	</body>
