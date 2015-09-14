@@ -35,9 +35,16 @@
 				<p>Hello world</p>
 			</section>
 
-			<button id="button" type="button">Click Me!</button>
+			<p>
+				<button id="button" type="button">Click Me!</button>
+				<input class="alias" type="text" />
+			</p>
 
-			<input class="alias" type="text" />
+			<p>
+			<input id="search_input" type="text" />
+			<button id="search_button" type="button">Search</button>
+			</p>
+
 		</div>
 
 		<div id="right">
@@ -49,29 +56,7 @@
 			$(document).ready(function() {
 				$("#hidden").fadeIn("slow", function() {
 					$(".alias").focus();
-
-						$.get("https://api.spotify.com/v1/search?q=artist:%22The+Rolling+Stones%22&type=album")
-
-							.done(function(data) {
-								console.log("Spotify search response:\n" + JSON.stringify(data));
-
-								$.each(data.albums.items, function(index, album) {
-
-									var $albumInfo = $("<div>", {class: "albumInfo"});
-									$albumInfo.append($("<a>", {text: album.name, href: album.external_urls.spotify}));
-									$albumInfo.append($("<p>", {text: "Type: " + album.type}));
-
-									var $albumCover = $("<div>", {class: "albumCover"});
-									$albumCover.append($("<img>", {src: album.images[0].url, width: 100, height: 100}));
-
-									var $article = $("<article>");
-									$article.append($albumCover);
-									$article.append($albumInfo);
-									$article.append($("<div>", {style: "clear:both"}));
-
-  									$("#right").append($article);
-								});
-							});
+					spotifySearch("The Rolling Stones");
 				});
 			});
 
@@ -95,6 +80,44 @@
 				var html = $("#hidden").html();
 				$("#hidden").html(html.replace(rgxp, repl));
 			}
+
+			String.prototype.replaceAll = function (find, replace) {
+				var text = this;
+				return text.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), replace);
+			};
+
+			function spotifySearch(searchTerm) {
+				$.get("https://api.spotify.com/v1/search?q=artist:%22" + searchTerm.replaceAll(" ", "+") + "%22&type=album")
+
+					.done(function(data) {
+						console.log("Spotify search response:\n" + JSON.stringify(data));
+
+						$("#right").empty();
+
+						$.each(data.albums.items, function(index, album) {
+
+							var $albumInfo = $("<div>", {class: "albumInfo"});
+							$albumInfo.append($("<a>", {text: album.name, href: album.external_urls.spotify}));
+							$albumInfo.append($("<p>", {text: "Type: " + album.type}));
+
+							var $albumCover = $("<div>", {class: "albumCover"});
+							$albumCover.append($("<img>", {src: album.images[0].url, width: 100, height: 100}));
+
+							var $article = $("<article>");
+							$article.append($albumCover);
+							$article.append($albumInfo);
+							$article.append($("<div>", {style: "clear:both"}));
+
+								$("#right").append($article);
+						});
+					});
+			}
+
+			$("#search_button").click(function() {
+				if ($("#search_input").val().length > 0) {
+					spotifySearch($("#search_input").val());
+				}
+			});
 		</script>
 	</body>
 </html>
