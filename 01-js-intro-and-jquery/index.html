@@ -34,7 +34,7 @@
 			<p>Hello world</p>
 		</section>
 
-		<button type="button">Click Me!</button>
+		<button id="button" type="button">Click Me!</button>
 
 		<input class="alias" type="text" />
 
@@ -46,6 +46,10 @@
 					$(".alias").focus();
 				});
 			});
+
+			$("#button").click(function() {
+				$.get("http://bootcamp.aws.af.cm/welcome/Emanuel");
+			})
 		</script>
 	</body>
 </html>
