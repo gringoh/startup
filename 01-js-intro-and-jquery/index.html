@@ -1,42 +1,47 @@
 <!DOCTYPE html>
 <html>
 	<head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="styles.css" rel="stylesheet">
+		<meta charset="utf-8">
+        <link href="normalize.css" rel="stylesheet">
+		<link href="styles.css" rel="stylesheet">
 		<title>Lorem ipsum dolor sit amet</title>
 	</head>
 	<body>
-		<section>
-			<h1>Lorem ipsum dolor sit amet</h1>
-			<p>Ea legimus pericula adolescens his. Duo ridens docendi interesset cu, qui munere platonem ex, ea ius alii eruditi maiorum. Vix omnium officiis assueverit ea, mel dicit vituperata ea. No verterem omittantur definitionem eum. Ad cum utroque fuisset scriptorem. Detracto noluisse voluptatibus ne eam, id augue inimicus vix.</p>
-			<p>Labores cotidieque ne usu, idque accumsan consectetuer sit et, qui labitur bonorum cu. Ne novum perpetua reprimique pri. Ne eam malis aliquam comprehensam, cu duo prompta mediocrem honestatis. Graece assentior cu pri, quo alterum detracto id. Ei partem ridens impedit usu.</p>
-		</section>
+		<div id="left">
+			<section>
+				<h1>Lorem ipsum dolor sit amet</h1>
+				<p>Ea legimus pericula adolescens his. Duo ridens docendi interesset cu, qui munere platonem ex, ea ius alii eruditi maiorum. Vix omnium officiis assueverit ea, mel dicit vituperata ea. No verterem omittantur definitionem eum. Ad cum utroque fuisset scriptorem. Detracto noluisse voluptatibus ne eam, id augue inimicus vix.</p>
+				<p>Labores cotidieque ne usu, idque accumsan consectetuer sit et, qui labitur bonorum cu. Ne novum perpetua reprimique pri. Ne eam malis aliquam comprehensam, cu duo prompta mediocrem honestatis. Graece assentior cu pri, quo alterum detracto id. Ei partem ridens impedit usu.</p>
+			</section>
 
-		<section>
-			<h2>Lorem ipsum dolor sit amet</h2>
-			<p>Ea legimus pericula adolescens his. Duo ridens docendi interesset cu, qui munere platonem ex, ea ius alii eruditi maiorum. Vix omnium officiis assueverit ea, mel dicit vituperata ea. No verterem omittantur definitionem eum. Ad cum utroque fuisset scriptorem. Detracto noluisse voluptatibus ne eam, id augue inimicus vix.</p>
-			<p>Labores cotidieque ne usu, idque accumsan consectetuer sit et, qui labitur bonorum cu. Ne novum perpetua reprimique pri. Ne eam malis aliquam comprehensam, cu duo prompta mediocrem honestatis. Graece assentior cu pri, quo alterum detracto id. Ei partem ridens impedit usu.</p>
-		</section>
+			<section>
+				<h2>Lorem ipsum dolor sit amet</h2>
+				<p>Ea legimus pericula adolescens his. Duo ridens docendi interesset cu, qui munere platonem ex, ea ius alii eruditi maiorum. Vix omnium officiis assueverit ea, mel dicit vituperata ea. No verterem omittantur definitionem eum. Ad cum utroque fuisset scriptorem. Detracto noluisse voluptatibus ne eam, id augue inimicus vix.</p>
+				<p>Labores cotidieque ne usu, idque accumsan consectetuer sit et, qui labitur bonorum cu. Ne novum perpetua reprimique pri. Ne eam malis aliquam comprehensam, cu duo prompta mediocrem honestatis. Graece assentior cu pri, quo alterum detracto id. Ei partem ridens impedit usu.</p>
+			</section>
 
-		<section>
-			<h2>Lorem ipsum dolor sit amet</h2>
-			<p>Ea legimus pericula adolescens his. Duo ridens docendi interesset cu, qui munere platonem ex, ea ius alii eruditi maiorum. Vix omnium officiis assueverit ea, mel dicit vituperata ea. No verterem omittantur definitionem eum. Ad cum utroque fuisset scriptorem. Detracto noluisse voluptatibus ne eam, id augue inimicus vix.</p>
-			<ul>
-				<li>Malis maluisset ut his</li>
-				<li>Ius eu eruditi propriae accommodare</li>
-				<li>Id sed brute praesent</li>
-				<li>Eum ipsum persius numquam ad</li>
-			</ul>
-		</section>
+			<section>
+				<h2>Lorem ipsum dolor sit amet</h2>
+				<p>Ea legimus pericula adolescens his. Duo ridens docendi interesset cu, qui munere platonem ex, ea ius alii eruditi maiorum. Vix omnium officiis assueverit ea, mel dicit vituperata ea. No verterem omittantur definitionem eum. Ad cum utroque fuisset scriptorem. Detracto noluisse voluptatibus ne eam, id augue inimicus vix.</p>
+				<ul>
+					<li>Malis maluisset ut his</li>
+					<li>Ius eu eruditi propriae accommodare</li>
+					<li>Id sed brute praesent</li>
+					<li>Eum ipsum persius numquam ad</li>
+				</ul>
+			</section>
 
-		<section id="hidden">
-			<p>Hello world</p>
-		</section>
+			<section id="hidden">
+				<p>Hello world</p>
+			</section>
 
-		<button id="button" type="button">Click Me!</button>
+			<button id="button" type="button">Click Me!</button>
 
-		<input class="alias" type="text" />
+			<input class="alias" type="text" />
+		</div>
+
+		<div id="right">
+		</div>
 
 		<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
 
@@ -44,6 +49,29 @@
 			$(document).ready(function() {
 				$("#hidden").fadeIn("slow", function() {
 					$(".alias").focus();
+
+						$.get("https://api.spotify.com/v1/search?q=artist:%22The+Rolling+Stones%22&type=album")
+
+							.done(function(data) {
+								console.log("Spotify search response:\n" + JSON.stringify(data));
+
+								$.each(data.albums.items, function(index, album) {
+
+									var $albumInfo = $("<div>", {class: "albumInfo"});
+									$albumInfo.append($("<a>", {text: album.name, href: album.external_urls.spotify}));
+									$albumInfo.append($("<p>", {text: "Type: " + album.type}));
+
+									var $albumCover = $("<div>", {class: "albumCover"});
+									$albumCover.append($("<img>", {src: album.images[0].url, width: 100, height: 100}));
+
+									var $article = $("<article>");
+									$article.append($albumCover);
+									$article.append($albumInfo);
+									$article.append($("<div>", {style: "clear:both"}));
+
+  									$("#right").append($article);
+								});
+							});
 				});
 			});
 
