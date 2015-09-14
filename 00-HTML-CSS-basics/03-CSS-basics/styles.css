@@ -1,33 +1,35 @@
 html {
 	font-family: Arial;
 	font-size: 14px;
-	font-weight: bold;
-}
-header, footer, aside, nav { background-color: #FF0; }
-header, footer { text-align: center; }
-
-.header {
-	font-size: 46px;
-	background-color: magenta;
+	text-align: center;
 }
 
-.footer {
-	font-size: 10px;
-	background-color: magenta;
+header { 
+	background-color: #CCC;
 }
 
-.content { font-size: 14px; }
-
-.navigation {
-	font-size: 12px;
-	background-color: blue;
+nav, section, aside {
+	float:left;
+	width: 33%;
 }
 
-.sidebar {
-	font-size: 10px;
-	background-color: magenta;
+header, nav, section, aside, footer, article {
+	padding: 20px 0 20px 0;
 }
 
-.oh-no-inline-styles {
-	background-color: green!important;
+nav {
+	background-color: #F00;
+}
+
+section {
+	background-color: #0F0;
+}
+
+aside {
+	background-color: #00F;
+}
+
+footer {
+	clear: both;
+	background-color: #999;
 }
