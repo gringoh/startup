@@ -234,3 +234,41 @@ Movie.prototype.like = Social.prototype.like;
 var ironMan2 = new Movie();
 ironMan2.set('title', 'Iron Man 2');
 ironMan2.share('V. Rivas');
+
+console.log('----------------------------------');
+
+/**
+ * Actor: representation of an Actor
+ */
+
+function Actor(name) {
+	this.attributes = {};
+}
+
+Actor.prototype = {
+	constructor: Actor,
+
+	set: function(attr, value) {
+		this.attributes[attr] = value;
+	},
+
+	get: function(attr) {
+		return this.attributes[attr];
+	}
+};
+
+var bradPitt = new Actor();
+bradPitt.set('firstName', 'Brad');
+bradPitt.set('lastName', 'Pitt');
+
+var edwardNorton = new Actor();
+edwardNorton.set('firstName', 'Edward');
+edwardNorton.set('lastName', 'Norton');
+
+theMatrix.set('cast', [bradPitt, edwardNorton]);
+
+var helenaBonhamCarter = new Actor();
+helenaBonhamCarter.set('firstName', 'Helena');
+helenaBonhamCarter.set('lastName', 'Bonham Carter');
+
+theMatrix.get('cast').push(helenaBonhamCarter);
