@@ -28,6 +28,37 @@
 					return this.attributes[attr];
 				}
 			}
+
+			var fightClub = new Movie();
+			fightClub.set('title', 'Fight Club');
+			fightClub.set('year', '1999');
+			fightClub.set('director', 'David Fincher');
+
+			console.log('Movie: ' + fightClub.get('title'));
+			console.log('Year: ' + fightClub.get('year'));
+			console.log('Director: ' + fightClub.get('director'));
+
+			console.log('----------------------------------');
+
+			var killBill = new Movie();
+			killBill.set('title', 'Kill Bill');
+			killBill.set('year', '2003');
+			killBill.set('director', 'Quentin Tarantino');
+
+			console.log('Movie: ' + killBill.get('title'));
+			console.log('Year: ' + killBill.get('year'));
+			console.log('Director: ' + killBill.get('director'));
+
+			console.log('----------------------------------');
+
+			var schoolOfRock = new Movie();
+			schoolOfRock.set('title', 'School of Rock');
+			schoolOfRock.set('year', '2003');
+			schoolOfRock.set('director', 'Richard Linklater');
+
+			console.log('Movie: ' + schoolOfRock.get('title'));
+			console.log('Year: ' + schoolOfRock.get('year'));
+			console.log('Director: ' + schoolOfRock.get('director'));
 		</script>
 
 	</head>
