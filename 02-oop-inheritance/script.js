@@ -209,3 +209,21 @@ theMatrix.download();
 theMatrix.addObserver(new MovieObserver('Observer C'));
 theMatrix.play();
 theMatrix.stop();
+
+
+
+/**
+ * Social: representation of Social functions
+ */
+
+function Social() { }
+
+Social.prototype = {
+	share: function (friendName) {
+		// ...
+	},
+
+	like: function () {
+		// ...
+	}
+};
