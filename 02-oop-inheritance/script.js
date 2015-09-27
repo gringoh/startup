@@ -210,7 +210,7 @@ theMatrix.addObserver(new MovieObserver('Observer C'));
 theMatrix.play();
 theMatrix.stop();
 
-
+console.log('----------------------------------');
 
 /**
  * Social: representation of Social functions
@@ -220,10 +220,17 @@ function Social() { }
 
 Social.prototype = {
 	share: function (friendName) {
-		// ...
+		console.log('Sharing ' + this.get('title') + ' with ' + friendName);
 	},
 
 	like: function () {
-		// ...
+		console.log('You just liked ' + this.get('title'));
 	}
 };
+
+Movie.prototype.share = Social.prototype.share;
+Movie.prototype.like = Social.prototype.like;
+
+var ironMan2 = new Movie();
+ironMan2.set('title', 'Iron Man 2');
+ironMan2.share('V. Rivas');
