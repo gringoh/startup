@@ -181,3 +181,31 @@ schoolOfRock.play();
 fightClub.stop();
 killBill.stop();
 schoolOfRock.stop();
+
+console.log('----------------------------------');
+
+function DownloadableMovie() {
+	Movie.call(this);
+	this.attributes = {};
+
+	this.download = function() {
+		console.log('now downloading movie: ' + this.get('title'));
+	}
+};
+
+inheritPrototype(DownloadableMovie, Subject);
+
+var theMatrix = new DownloadableMovie();
+theMatrix.set('title', 'The Matrix');
+theMatrix.set('year', '1999');
+theMatrix.set('director', 'The Wachowskis');
+
+console.log('Movie: ' + theMatrix.get('title'));
+console.log('Year: ' + theMatrix.get('year'));
+console.log('Director: ' + theMatrix.get('director'));
+
+theMatrix.download();
+
+theMatrix.addObserver(new MovieObserver('Observer C'));
+theMatrix.play();
+theMatrix.stop();
